@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -30,8 +30,22 @@ def home():
     return render_template('login.html')
 
 
-@app.route('/create')
+@app.route('/create', methods=['GET', 'POST'])
 def createnew():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        username = request.form.get('username')
+        phone = request.form.get('phone')
+        password = request.form.get('password')
+
+        entry = Details(name=name, email=email, username=username,
+                        phone=phone, password=password)
+        db.session.add(entry)
+        db.session.commit()
+
+        return redirect('/')
+
     return render_template('create.html')
 
 
