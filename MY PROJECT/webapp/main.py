@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request, redirect, abort, session
+from flask import Flask, render_template, request, redirect, abort, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_mail import Mail, Message
-
+from werkzeug.utils import secure_filename
+import os
 
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = params['localserver']
@@ -14,6 +14,7 @@ db = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'secret'
+app.config['UPLOAD_FOLDER'] = params['uploadlocation']
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
@@ -85,6 +86,17 @@ def createnew():
         return redirect('/')
 
     return render_template('create.html')
+
+
+@app.route('/uploader', methods=['GET', 'POST'])
+def uploader():
+    if ('user' in session and session['user'] == params['adminusername']):
+        if request.method == "POST":
+            f = request.files['file']
+            f.save(os.path.join(
+                app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+
+            return "uploaded successfully"
 
 
 if __name__ == "__main__":

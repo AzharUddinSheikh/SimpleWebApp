@@ -3,6 +3,7 @@
         "adminusername": "azhar",
         "adminpassword": "valar",
         "localserver": "mysql://root:@localhost:3307/database",
-        "myemail": "azharsheikh760@gmail.com"
+        "myemail": "azharsheikh760@gmail.com",
+        "uploadlocation": "C:\\Users\\azhar\\Desktop\\Minimal application\\MY PROJECT\\webapp\\templates"
     }
 }
