@@ -8,5 +8,10 @@ def home():
     return render_template('login.html')
 
 
+@app.route('/create')
+def createnew():
+    return render_template('create.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
