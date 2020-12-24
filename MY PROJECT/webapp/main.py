@@ -1,9 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, abort
 from flask_sqlalchemy import SQLAlchemy
+import json
+
+with open('config.json', 'r') as c:
+    params = json.load(c)["params"]
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost:3307/database'
+app.config['SQLALCHEMY_DATABASE_URI'] = params['localserver']
 db = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -25,8 +29,18 @@ class Details(db.Model):
         self.password = password
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if (username == params['adminusername'] and password == params['adminpassword']):
+            return render_template('dashboard.html')
+
+        else:
+            abort(404)
+
     return render_template('login.html')
 
 

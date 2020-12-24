@@ -1,0 +1,7 @@
+{
+    "params": {
+        "adminusername": "azhar",
+        "adminpassword": "valar",
+        "localserver": "mysql://root:@localhost:3307/database"
+    }
+}
