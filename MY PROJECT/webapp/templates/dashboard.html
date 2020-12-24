@@ -21,4 +21,34 @@
         {% endwith %}
     </div>
 
+    <div>
+
+        <table class="table table-striped table-dark ">
+
+            <thead>
+                <tr>
+                    <th>SERIAL NO</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>USERNAME</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>{{post.sno}}</td>
+                    <td>{{post.name}}</td>
+                    <td>{{post.email}}</td>
+                    <td>{{post.username}}</td>
+                    <td>
+                        <button class="btn btn-primary">EDIT</button>
+                        <button class="btn btn-primary">DELETE</button>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -58,7 +58,9 @@ def home():
             session['user'] = username
             flash('You were successfully logged in')
 
-            return render_template('dashboard.html', params=params)
+            posts = Details.query.all()
+
+            return render_template('dashboard.html', params=params, posts=posts)
 
         else:
             flash('Sorry you failed to logged in ')
