@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, abort, session, url_for
+from flask import Flask, render_template, request, redirect, abort, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_mail import Mail, Message
@@ -56,10 +56,13 @@ def home():
 
         if (username == params['adminusername'] and password == params['adminpassword']):
             session['user'] = username
+            flash('You were successfully logged in')
+
             return render_template('dashboard.html', params=params)
 
         else:
-            abort(500)
+            flash('Sorry you failed to logged in ')
+            return render_template('login.html')
 
     return render_template('login.html')
 
