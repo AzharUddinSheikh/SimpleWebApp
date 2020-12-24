@@ -1,54 +1,111 @@
-<a href="/logout"><button type="button" class="btn btn-primary">LOGOUT</button></a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DashBoard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:rgb(133, 133, 172);">
+    <a href="/logout"><button type="button" class="btn btn-primary">LOGOUT</button></a>
 
 
-<a href="/create"><button type="button" style="float: right;" class="btn btn-primary">Go to sign up</button></a>
-
-<div>
-    <p>Click on the "Choose File" button to upload Your Resume:</p>
-
-    <form action="/uploader" method="POST" enctype="multipart/form-data">
-        <input type="file" id="myFile" name="file">
-        <input type="submit">
-    </form>
-    <div>
-
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        {{ message }}
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-    </div>
+    <a href="/create"><button type="button" style="float: right;" class="btn btn-primary">Go to sign up</button></a>
 
     <div>
+        <p>Click on the "Choose File" button to upload Your Resume:</p>
 
-        <table class="table table-striped table-dark ">
+        <form action="/uploader" method="POST" enctype="multipart/form-data">
+            <input class="btn btn-primary" type="file" id="myFile" name="file">
+            <input class="btn btn-danger" type="submit">
+        </form>
+        <div>
 
-            <thead>
-                <tr>
-                    <th>SERIAL NO</th>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>USERNAME</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for post in posts %}
-                <tr>
-                    <td>{{post.sno}}</td>
-                    <td>{{post.name}}</td>
-                    <td>{{post.email}}</td>
-                    <td>{{post.username}}</td>
-                    <td>
-                        <button class="btn btn-primary">EDIT</button>
-                        <a href="/delete/{{post.sno}}"><button class="delete btn btn-sm btn-danger">DELETE</button></a>
-                    </td>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
 
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="container">
+
+            <table class="table table-striped table-dark ">
+
+                <thead>
+                    <tr>
+                        <th>SERIAL NO</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>USERNAME</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{post.sno}}</td>
+                        <td>{{post.name}}</td>
+                        <td>{{post.email}}</td>
+                        <td>{{post.username}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                data-target="#myModal">EDIT</button>
+                            <a href="/delete/{{post.sno}}"><button class="btn btn-info btn-danger"
+                                    onclick="return confirm('Are you sure to delete?')">DELETE</button></a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 style="background-color:powderblue;" class=" modal-title">Update your Existing
+                                Information
+                            </h4>
+
+                            <div class="modal-body">
+                                <table>
+                                    <thead>
+                                    </thead>
+                                    <tbody class="table">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-</div>
+</body>
