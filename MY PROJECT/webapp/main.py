@@ -99,5 +99,11 @@ def uploader():
             return "uploaded successfully"
 
 
+@app.route('/logout')
+def logout():
+    session.pop('user')
+    return redirect(url_for('home'))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
