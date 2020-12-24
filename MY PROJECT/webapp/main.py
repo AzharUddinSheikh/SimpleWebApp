@@ -77,8 +77,8 @@ def createnew():
         db.session.add(entry)
         db.session.commit()
 
-        msg = Message('Message from blog azhar ', sender=email,
-                      recipients=params['myemail'], body=phone)
+        msg = Message('New SIGN UP from BLOG', sender=email,
+                      recipients=[params['myemail']], body=phone)
 
         mail.send(msg)
 
