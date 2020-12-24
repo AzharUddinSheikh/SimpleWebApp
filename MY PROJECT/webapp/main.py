@@ -89,6 +89,7 @@ def createnew():
 
         mail.send(msg)
 
+        flash('Successfully created New User')
         return redirect('/')
 
     return render_template('create.html')
@@ -121,6 +122,26 @@ def delete(sno):
         db.session.commit()
 
         return redirect(url_for('home'))
+
+
+@app.route('/update', methods=['GET', 'POST'])
+def update():
+    if ('user' in session and session['user'] == params['adminusername']):
+        if request.method == "POST":
+            my_data = Details.query.get(request.form.get('sno'))
+
+            my_data.name = request.form.get('name')
+            my_data.email = request.form.get('email')
+            my_data.phone = request.form.get('phone')
+            my_data.username = request.form.get('username')
+            my_data.password = request.form.get('password')
+
+            db.session.commit()
+            flash("Information Has Been Modified/Updated")
+
+            return redirect(url_for('home'))
+
+    return render_template('edit.html')
 
 
 if __name__ == "__main__":

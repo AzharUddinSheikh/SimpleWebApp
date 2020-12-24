@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color:rgb(133, 133, 172);">
+<body style="background-color:rgb(209, 209, 209);">
     <a href="/logout"><button type="button" class="btn btn-primary">LOGOUT</button></a>
 
 
@@ -55,80 +55,14 @@
                         <td>{{post.email}}</td>
                         <td>{{post.username}}</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                data-target="#myModal">EDIT</button>
-                            <a href="/delete/{{post.sno}}"><button class="btn btn-info btn-danger"
-                                    onclick="return confirm('Are you sure to delete?')">DELETE</button></a>
+                            <a href="/update"><button type="button" class="btn btn-info btn-lg">EDIT</button></a>
+                            <a href="/delete/{{post.sno}}"><button class="btn btn-info btn-danger">DELETE</button></a>
                         </td>
 
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 style="background-color:powderblue;" class=" modal-title">Update your Existing
-                                Information
-                            </h4>
-                            <div class="modal-body" style="background-color: blanchedalmond;">
-                                <div class="modal-body">
-
-                                    <label for="name"><b>Name</b></label>
-                                    <input type="text" placeholder="Enter name" name="name" id="name" value="" required>
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <label for="username"><b>Username</b></label>
-                                    <input type="text" placeholder="Enter username" name="username" id="username"
-                                        required value="">
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <label for="email"><b>Email</b></label>
-                                    <input type="text" placeholder="Enter Email" name="email" id="email" required
-                                        value="">
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <label for="password"><b>Password</b></label>
-                                    <input type="password" placeholder="Enter password" name="password" id="password"
-                                        required value="">
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <label for="Phone"><b>Phone</b></label>
-                                    <input type="number" placeholder="Enter Phone" name="phone" id="email" required
-                                        value="">
-
-                                </div>
-
-                                <div class="modal-body">
-                                    <button class="btn btn-primary" type="button">Submit</button>
-                                </div>
-
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
