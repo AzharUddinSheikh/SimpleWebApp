@@ -113,7 +113,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/delete/<string:sno>', methods=['GET', 'POST'])
+@app.route('/delete/<string:sno>/', methods=['GET', 'POST'])
 def delete(sno):
     if ('user' in session and session['user'] == params['adminusername']):
         posts = Details.query.filter_by(sno=sno).first()
