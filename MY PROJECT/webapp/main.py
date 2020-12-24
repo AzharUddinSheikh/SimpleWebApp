@@ -48,7 +48,8 @@ class Details(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if ('user' in session and session['user'] == params['adminusername']):
-        return render_template('dashboard.html', params=params)
+        posts = Details.query.all()
+        return render_template('dashboard.html', params=params, posts=posts)
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -91,6 +92,8 @@ def createnew():
         return redirect('/')
 
     return render_template('create.html')
+
+# uploading a file and getting to our template folder
 
 
 @app.route('/uploader', methods=['GET', 'POST'])
