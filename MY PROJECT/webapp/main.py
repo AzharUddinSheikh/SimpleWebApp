@@ -105,12 +105,14 @@ def uploader():
             f.save(os.path.join(
                 app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
 
-            return "uploaded successfully"
+            flash("Files has been Uploaded")
+            return redirect(url_for('home'))
 
 
 @app.route('/logout')
 def logout():
     session.pop('user')
+    flash('Successfully logout')
     return redirect(url_for('home'))
 
 
