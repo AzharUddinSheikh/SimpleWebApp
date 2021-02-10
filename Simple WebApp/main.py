@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = params['localserver']
 db = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'secret'
+app.config['SECRET_KEY'] = params['secret_key']
 app.config['UPLOAD_FOLDER'] = params['uploadlocation']
 
 mail_settings = {
@@ -37,7 +37,7 @@ class Details(db.Model):
     name = db.Column(db.String(120), unique=False, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
 
-    def __inti__(self, username, email, phone, name, password):
+    def __init__(self, username, email, phone, name, password):
         self.name = name
         self.email = email
         self.username = username
