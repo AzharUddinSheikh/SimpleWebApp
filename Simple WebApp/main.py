@@ -21,8 +21,8 @@ mail_settings = {
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": 'azharsheikh760@gmail.com',
-    "MAIL_PASSWORD": 'Valar123@'
+    "MAIL_USERNAME": params['email'],
+    "MAIL_PASSWORD": params['password']
 }
 
 app.config.update(mail_settings)
